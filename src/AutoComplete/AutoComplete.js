@@ -264,7 +264,14 @@ class AutoComplete extends Component {
     // Keep the TextField focused
     event.preventDefault();
   };
-
+  handleMouseEnter = function (event) {            
+     event.preventDefault();
+         _this.setState({
+           open: true,
+           focusTextField: false,
+           anchorEl: _reactDom2.default.findDOMNode(_this.refs.searchTextField)
+     });
+  }
   handleItemClick = (event, child) => {
     const dataSource = this.props.dataSource;
     const index = parseInt(child.key, 10);
@@ -513,6 +520,7 @@ class AutoComplete extends Component {
         initiallyKeyboardFocused={true}
         onItemClick={this.handleItemClick}
         onMouseDown={this.handleMouseDown}
+        onMouseEnter={this.handleMouseEnter}
         style={Object.assign(styles.menu, menuStyle)}
         listStyle={Object.assign(styles.list, listStyle)}
         {...menuProps}
